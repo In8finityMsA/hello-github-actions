@@ -1,11 +1,14 @@
 name: A workflow for my Hello World file
 on: push
+defaults:
+  run:
+    shell: bash
 jobs:
   build:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./action-a
-        with:
-          MY_NAME: "Mona"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run on the project setup.
+        run: ./toolchain/build.sh
